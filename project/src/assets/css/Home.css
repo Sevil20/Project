@@ -1,0 +1,77 @@
+.page-content {
+  margin-top: 3rem;
+}
+
+nav {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 100; /* Ensure the navbar is above other content */
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 1rem;
+  margin: 0;
+  justify-content: space-around;
+  background-color: #fff;
+}
+nav ul li {
+  margin-right: 1rem;
+}
+nav ul li a {
+  color: rgb(147, 147, 147);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+.main {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("../img/food.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 7rem 0;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .left-side {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 4rem;
+  height: 160px;
+  width: 50%;
+  border-radius: 12px;
+}
+.main .left-side h1 {
+  margin-bottom: 1rem;
+  font-size: 40px;
+  font-weight: 600;
+}
+.main .left-side .text {
+  margin-bottom: 1.5rem;
+  font-size: 22px;
+}
+.main .left-side .btn-group button {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 20px;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.main .left-side .btn-group button:hover {
+  background-color: #e67e22;
+}/*# sourceMappingURL=Home.css.map */
