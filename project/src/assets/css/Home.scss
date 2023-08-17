@@ -58,7 +58,7 @@ nav {
   .left-side {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 4rem;
-    height: 160px;
+    height: 300px;
     width: 50%; 
     border-radius: 12px;
 
@@ -73,23 +73,81 @@ nav {
       font-size: 22px;
     }
 
-    .btn-group {
-      button {
-        background-color: #f39c12;
-        color: white;
+    .search {
+        display: flex;
+        align-items: center; /* Center vertically */
+        position: relative;
+      input{
+        background-color: #fff;
+        color: #000;
         border: none;
         padding: 1rem 2rem;
         font-size: 20px;
         border-radius: 0.3rem;
         cursor: pointer;
+        margin-left: 105px;
         transition: background-color 0.2s;
-
-        &:hover {
-          background-color: #e67e22;
+        outline: none;
+        box-shadow: 10px 10px 10px rgb(63, 23, 4);
+        background: linear-gradient(135deg, rgb(211, 110, 8) 0%, rgb(255, 255, 255) 100%);
+      }
+      .search-icon {
+        position: absolute;
+        right: 110px; /* Adjust the distance from the input field */
+        top: 50%;
+        transform: translateY(-50%); /* Center vertically */
+        cursor: pointer;
+        font-weight: 600;
+        color: #F57C00;
+        font-size: 25px;
+        transition: color 0.3s ease;
+        svg {
+          font-size: 28px;
+          transition: color 0.3s ease;
+    
+          &:hover {
+            color: #E56400;
+          }
         }
+      }
+    
+     
+    }
+  }
+  @media (max-width: 768px) {
+    ul {
+      flex-direction: column;
+      background-color: transparent;
+
+      li {
+        margin-right: 0;
+        margin-bottom: 1rem;
       }
     }
   }
+}
+
+.main {
+  // ... your existing main styles ...
+
+  @media (max-width: 768px) {
+    padding: 5rem 0;
+  }
+  @media (max-width: 468px) {
+    padding: 7rem 0;
+  }
+
+  .left-side {
+    // ... your existing .left-side styles ...
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    @media (max-width: 468px) {
+      width: 100%;
+    }
+  }
+
 }
 
 

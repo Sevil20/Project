@@ -19,12 +19,12 @@ const Main: React.FC = () => {
           <div className="category-group">
             <img
               className="image"
-              src="image-source.jpg"
+              src=""
               alt="Delicious Food"
             />
             <p className="info">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Ducimus, reiciendis.
+              Ducimus, reiciendis
             </p>
           </div>
         </div>

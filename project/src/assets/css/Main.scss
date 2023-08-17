@@ -17,6 +17,7 @@
   
     .btn-categories {
       margin-bottom: 2rem;
+
     }
   
     .btn-group {
@@ -78,4 +79,16 @@
       }
     }
   }
+  @media screen and (max-width: 668px) {
+    /* Adjust styles for smaller screens */
+    .btn-group {
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
   

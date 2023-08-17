@@ -1,0 +1,25 @@
+.card-group {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  padding: 20px;
+}
+.card-group .card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+.card-group .card:last-child {
+  margin-right: 0;
+}
+.card-group .card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.card-group .card p {
+  margin: 0;
+}/*# sourceMappingURL=CardGroup.css.map */

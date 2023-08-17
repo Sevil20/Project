@@ -1,0 +1,32 @@
+// CardGroup.scss
+
+.card-group {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    padding: 20px;
+  
+    .card {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-right: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      flex: 1;
+  
+      &:last-child {
+        margin-right: 0;
+      }
+  
+      h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      p {
+        margin: 0;
+      }
+    }
+  }
+  
