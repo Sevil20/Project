@@ -1,11 +1,18 @@
-// About.tsx
-import React from 'react';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from "react";
+import "../assets/css/About.scss";
+import Loader from "../components/Loader";
+import Header from "../components/Header";
+
 
 const About: React.FC = () => {
-  return <div>About Page
-    <Footer/>
-  </div>;
+
+
+  return (
+<>
+<Header/>
+
+</>
+  );
 };
 
 export default About;

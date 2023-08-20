@@ -1,8 +1,12 @@
 import React from 'react';
 import '../assets/css/Contact.css'; // Make sure to import your SCSS file
+import Header from '../components/Header';
+
 
 const Contact: React.FC = () => {
   return (
+<>
+<Header/>
     <div className="contact_us">
       <div className="responsive-container-block container">
         <form className="form-box">
@@ -52,6 +56,7 @@ const Contact: React.FC = () => {
         </form>
       </div>
     </div>
+</>
   );
 };
 

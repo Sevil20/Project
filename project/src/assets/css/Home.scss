@@ -1,10 +1,16 @@
 // Home.scss
 // Home.scss
 $main-background-image: url('../img/food.jpg'); // Specify your background image path
+@import "rsuite/dist/rsuite.css";
 
 
 .page-content {
   margin-top: 3rem;
+}
+.orange-border {
+  border: 2px solid orange;
+  border-radius: 8px;
+  outline: none;
 }
 
 nav {
@@ -93,7 +99,7 @@ nav {
       }
       .search-icon {
         position: absolute;
-        right: 110px; /* Adjust the distance from the input field */
+        right: 120px; /* Adjust the distance from the input field */
         top: 50%;
         transform: translateY(-50%); /* Center vertically */
         cursor: pointer;
