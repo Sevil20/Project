@@ -38,10 +38,10 @@ export const fetchCardGroupData = createAsyncThunk(
   async (currentPage: number) => { // Pass currentPage parameter
     try {
       const response = await axios.get(
-        'https://api.spoonacular.com/recipes/complexSearch?&apiKey=fa6914d24cbe497fbfc660d1fdea0c9a&number=40',
+        'https://api.spoonacular.com/recipes/complexSearch?&apiKey=2e676d608e4e4ee68e1cf716e0471c94&number=12',
         {
           params: {
-            apiKey: 'fa6914d24cbe497fbfc660d1fdea0c9a',
+            apiKey: '2e676d608e4e4ee68e1cf716e0471c94',
             offset: (currentPage - 1) * 5, // Adjust the offset based on page number
           },
         }
@@ -62,7 +62,8 @@ const cardGroupSlice = createSlice({
   reducers: {
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.data.searchQuery = action.payload;
-    },},
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCardGroupData.pending, (state) => {

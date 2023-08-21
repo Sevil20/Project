@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cardGroupReducer from '../reducers/cardGroupReducer';
 import cardDetailReducer from '../reducers/cardDetailReducer';
-import popularRecipes from '../reducers/popularRecipesReducer';
+// import popularRecipes from '../reducers/popularRecipesReducer';
 
 const store = configureStore({
   reducer: {
     cardGroup: cardGroupReducer,
     cardDetail: cardDetailReducer,
-    popularRecipes:popularRecipes,
+    // popularRecipes:popularRecipes,
   },
 });
 

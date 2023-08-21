@@ -7,7 +7,6 @@ import Loader from '../components/Loader';
 import { useAppSelector, useAppDispatch } from '../redux/store/hooks';
 import { Link } from 'react-router-dom';
 
-
 interface Recipe {
   id: number;
   title: string;
@@ -17,20 +16,18 @@ interface Recipe {
 
 const CardGroup: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { data, loading, error, searchQuery } = useAppSelector(
+  const { data, loading, error } = useAppSelector(
     (state: RootState) => state.cardGroup
   );
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (searchQuery) {
-      // Arama sorgusu varsa, API isteğini gerçekleştir
-      dispatch(fetchCardGroupData(1)); // Sayfa numarası 1 veya istediğiniz sayfa numarası
-    }
-  }, [dispatch, searchQuery]);
+    dispatch(fetchCardGroupData(currentPage));
+  }, [dispatch, currentPage]);
 
   async function handlePageChange(page: number): Promise<void> {
-    setCurrentPage(page); 
+    setCurrentPage(page); // Sayfa numarasını güncelle
+    dispatch(fetchCardGroupData(page)); // Yeni sayfa verilerini al
   }
 
   return (
@@ -67,12 +64,12 @@ const CardGroup: React.FC = () => {
       )}
 
 </div>
-<Pagination style={{margin:'80px'}}
+<Pagination style={{margin:'70px'}}
         current={currentPage}
         total={data.totalResults} // Toplam sonuç sayısını buraya geçin
         pageSize={20} // Her sayfada gösterilecek veri sayısı
         onChange={handlePageChange} // Sayfa değişikliği işleyicisi
-      />      
+      />         
             </>
   );
 };

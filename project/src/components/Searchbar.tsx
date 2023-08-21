@@ -1,50 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from "../redux/store/store";
-import '../assets/css/Searchbar.scss';
-import { useParams } from "react-router-dom";
-import Loader from "./Loader";
+import { setSearchQuery } from '../redux/reducers/cardGroupReducer';
+import { AppDispatch } from '../redux/store/store';
 
 
 
-const Searchbar: React.FC = () => {
-  const { query } = useParams<{ query: string }>();
-  const [searchQuery, setSearchQuery] = useState(query || "");
-  const dispatch = useDispatch<AppDispatch>();
 
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Arama sorgusunu store'a gönder
-    dispatch(setSearchQuery(searchQuery));
+const SearchBar: React.FC = () => {
+    const [searchQuery, setSearchQuery] = useState<string | undefined>(undefined);
+    const dispatch = useDispatch<AppDispatch>();
+  
+    const handleSearch = (value: string) => {
+      setSearchQuery(value);
+      dispatch(setSearchQuery(value));
+    };
+  
+    const options = [
+      {
+        value: '1',
+        label: 'Pizza',
+      },
+      {
+        value: '2',
+        label: 'Burger',
+      },
+      {
+        value: '3',
+        label: 'Cake'
+      },
+      {
+        value:'4',
+        label:'Salad'
+      },
+      {
+        value:'5',
+        label:'Chicken'
+      }
+      // Add more options as needed
+    ];
+  
+    return (
+      <Select
+        showSearch
+        style={{ width: 200 }}
+        placeholder="Search Recipes"
+        optionFilterProp="children"
+        filterOption={(input, option) => (option?.label ?? '').includes(input)}
+        filterSort={(optionA, optionB) =>
+          (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+        }
+        options={options} // Provide the options array here
+        onSearch={handleSearch}
+        value={searchQuery}
+      />
+    );
   };
+export default SearchBar;  
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
-  };
-
-  return (
-    <>
-      <div id="cover">
-        <form onSubmit={handleSubmit} role="search">
-          <label htmlFor="search">Search for stuff</label>
-          <input
-            id="search"
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
-            autoFocus
-            required
-          />
-        </form>
-      </div>
-
-    </>
-  );
-};
-
-export default Searchbar;
