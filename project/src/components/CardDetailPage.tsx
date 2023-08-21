@@ -32,7 +32,6 @@ const CardDetailPage: React.FC = () => {
     return <div className='card-not-available'>No data available</div>;
   }
 
-  // Destructure the relevant properties from the recipeInfo object
   const {
     title,
     image,

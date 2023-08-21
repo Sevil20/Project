@@ -9,11 +9,10 @@ $firaSans: 'Fira Sans', sans-serif;
   margin-top: 20px;
   margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; /* Restore flex-wrap */
-  justify-content: space-between;
-  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Changed to space-around */
   align-items: center;
+  width: 100%;
 
   .card-group-loader {
     display: flex;
@@ -21,49 +20,45 @@ $firaSans: 'Fira Sans', sans-serif;
     align-items: center;
   }
 }
+  .card-hover {
+    $root: &;
+    width: 32%; /* Adjusted width for better spacing */
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+    margin: 10px;
 
-.card-hover {
-  $root: &;
-  width: 60%;
-  height: 400px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
-  margin: 20px;
-
-  &:has(#{$root}__link:hover) {
-
-    #{$root}__extra {
-      transform: translateY(0);
-      transition: transform 0.35s;
-    }
-  }
-
-  &:hover {
-   
-    #{$root} {
-
-      &__content {
-        background-color: #DEE8C2;
-        bottom: 100%;
-        transform: translateY(100%);
-        padding: 50px 60px;
-        transition: all 0.35s cubic-bezier(.1,.72,.4,.97);
-      }
-
-      &__link {
-        opacity: 1;
-        transform: translate(-50%, 0);
-        transition: all 0.3s 0.35s cubic-bezier(.1,.72,.4,.97);
+    &:has(#{$root}__link:hover) {
+      #{$root}__extra {
+        transform: translateY(0);
+        transition: transform 0.35s;
       }
     }
 
-    img {
-      transform: scale(1);
-      transition: 0.35s 0.1s transform cubic-bezier(.1,.72,.4,.97);
+    &:hover {
+      #{$root} {
+        &__content {
+          background-color: #DEE8C2;
+          bottom: 100%;
+          transform: translateY(100%);
+          padding: 50px 60px;
+          transition: all 0.35s cubic-bezier(.1,.72,.4,.97);
+        }
+
+        &__link {
+          opacity: 1;
+          transform: translate(-50%, 0);
+          transition: all 0.3s 0.35s cubic-bezier(.1,.72,.4,.97);
+        }
+      }
+
+      img {
+        transform: scale(1);
+        transition: 0.35s 0.1s transform cubic-bezier(.1,.72,.4,.97);
+      }
     }
-  }
 
   &__content {
     width: 100%;

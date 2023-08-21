@@ -12,7 +12,7 @@ export interface RecipeInterface {
   sourceName:string
 }
 
-interface PopularRecipesState {
+export interface PopularRecipesState {
   data: {
     results: RecipeInterface[];
     offset: number;
@@ -23,8 +23,7 @@ interface PopularRecipesState {
   error: string | null;
 }
 
-
-const initialState: PopularRecipesState = {
+export const initialState: PopularRecipesState = {
   data: {
     results: [],
     offset: 0,
@@ -35,16 +34,16 @@ const initialState: PopularRecipesState = {
   error: null,
 };
 
-const fetchPopularRecipes = createAsyncThunk(
+export const fetchPopularRecipes = createAsyncThunk(
   'popularRecipes/fetchData',
-  async (recipeId:number) => { // <-- Accept the recipe ID as an argument
+  async (query:string) => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=false`,
+        `https://api.spoonacular.com/recipes/random?${query}`,
         {
           params: {
-            apiKey: '0e5c8a02ac484d40ad10bbf5c1364f3f',
-          },
+            apiKey: '5a012144de3f4d7fb15853a4793c84aa',
+          }
         }
       );
       console.log('Fetched data:', response.data);
@@ -57,7 +56,6 @@ const fetchPopularRecipes = createAsyncThunk(
     }
   }
 );
-
 
 export const popularRecipeReducer = createSlice({
   name: 'popularRecipes',

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../store/store';
 
@@ -11,6 +11,7 @@ interface Recipe {
 
 interface CardGroupState {
   data: {
+    searchQuery: string; // Arama sorgusu
     results: Recipe[];
     offset: number;
     number: number;
@@ -22,6 +23,7 @@ interface CardGroupState {
 
 const initialState: CardGroupState = {
   data: {
+    searchQuery: '',
     results: [],
     offset: 0,
     number: 0,
@@ -31,23 +33,36 @@ const initialState: CardGroupState = {
   error: null,
 };
 
-export const fetchCardGroupData = createAsyncThunk('cardGroup/fetchData', async () => {
-  try {
-    const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
-      params: {
-        apiKey: '5518ba70703d4fc883f3912db219b0f8',
-      },
-    });
-    return response.data;
-  } catch (error) {
-    throw new Error((error as any).response?.data?.message || 'An error occurred');
+export const fetchCardGroupData = createAsyncThunk(
+  'cardGroup/fetchData',
+  async (currentPage: number) => { // Pass currentPage parameter
+    try {
+      const response = await axios.get(
+        'https://api.spoonacular.com/recipes/complexSearch?&apiKey=fa6914d24cbe497fbfc660d1fdea0c9a&number=40',
+        {
+          params: {
+            apiKey: 'fa6914d24cbe497fbfc660d1fdea0c9a',
+            offset: (currentPage - 1) * 5, // Adjust the offset based on page number
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        (error as any).response?.data?.message || 'An error occurred'
+      );
+    }
   }
-});
+);
+
 
 const cardGroupSlice = createSlice({
   name: 'cardGroup',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchQuery: (state, action: PayloadAction<string>) => {
+      state.data.searchQuery = action.payload;
+    },},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCardGroupData.pending, (state) => {
@@ -70,3 +85,4 @@ export default cardGroupSlice.reducer;
 export const selectCardGroupData = (state: RootState) => state.cardGroup.data;
 export const selectCardGroupLoading = (state: RootState) => state.cardGroup.loading;
 export const selectCardGroupError = (state: RootState) => state.cardGroup.error;
+export const { setSearchQuery } = cardGroupSlice.actions;

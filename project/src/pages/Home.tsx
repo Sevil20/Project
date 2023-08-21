@@ -1,11 +1,9 @@
 import React from "react";
 import '../assets/css/Home.scss';
-import { Link } from "react-router-dom";
-import Main from "../components/Main";
 import CardGroup from "../components/CardGroup";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
+import Searchbar from "../components/Searchbar";
 
 const Home: React.FC = () => {
 
@@ -19,11 +17,12 @@ const Home: React.FC = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
             assumenda!
           </p>
+          <Searchbar/>
         </div>
       </div>
 
       <br />
-      <Main />
+      {/* <Main /> */}
       <br />
       <CardGroup />
       <Footer />
@@ -33,23 +32,4 @@ const Home: React.FC = () => {
 
 export default Home;
 
-/*
-<div className="search">
-            <input
-              type="text"
-              placeholder="Search"
-              value={searchValue}
-              onChange={handleInputChange}
-            />
-            {searchValue.length > 0 && (
-              <div className="search-icon">
-                <TfiSearch />
-                {/* Replace with your delete icon */
-              //   </div>
-              //   )}
-              //   {searchValue.length === 0 && (
-              //     <div className="search-icon icon-2">
-              //       <TfiSearch />
-              //     </div>
-              //   )}
-              // </div>
+
