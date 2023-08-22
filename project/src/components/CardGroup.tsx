@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination } from 'antd';
-import { fetchCardGroupData } from '../redux/reducers/cardGroupReducer';
+import { fetchCardGroupData, fetchSearchCard } from '../redux/reducers/cardGroupReducer';
 import { RootState } from '../redux/store/store';
 import '../assets/css/CardGroup.scss';
 import Loader from '../components/Loader';

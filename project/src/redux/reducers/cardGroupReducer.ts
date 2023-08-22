@@ -38,10 +38,10 @@ export const fetchCardGroupData = createAsyncThunk(
   async (currentPage: number) => { // Pass currentPage parameter
     try {
       const response = await axios.get(
-        'https://api.spoonacular.com/recipes/complexSearch?&apiKey=2e676d608e4e4ee68e1cf716e0471c94&number=12',
+        'https://api.spoonacular.com/recipes/complexSearch?&apiKey=5a012144de3f4d7fb15853a4793c84aa&number=12',
         {
           params: {
-            apiKey: '2e676d608e4e4ee68e1cf716e0471c94',
+            apiKey: '5a012144de3f4d7fb15853a4793c84aa',
             offset: (currentPage - 1) * 5, // Adjust the offset based on page number
           },
         }
@@ -55,7 +55,21 @@ export const fetchCardGroupData = createAsyncThunk(
   }
 );
 
-
+export const fetchSearchCard = createAsyncThunk(
+  'searchCard/fetchSearch',
+  async (searchQuery: string) => {
+    try {
+      const response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=5a012144de3f4d7fb15853a4793c84aa&number=20&query=${searchQuery}`, {
+        params: {
+          apiKey: '5a012144de3f4d7fb15853a4793c84aa',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error((error as any).response?.data?.message || 'An error occurred');
+    }
+  }
+);
 const cardGroupSlice = createSlice({
   name: 'cardGroup',
   initialState,
@@ -78,6 +92,21 @@ const cardGroupSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'An error occurred';
       });
+      
+      builder
+      .addCase(fetchSearchCard.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchSearchCard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchSearchCard.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'An error occurred';
+      });
+      
   },
 });
 
@@ -87,3 +116,4 @@ export const selectCardGroupData = (state: RootState) => state.cardGroup.data;
 export const selectCardGroupLoading = (state: RootState) => state.cardGroup.loading;
 export const selectCardGroupError = (state: RootState) => state.cardGroup.error;
 export const { setSearchQuery } = cardGroupSlice.actions;
+
