@@ -2,7 +2,7 @@
 import React from "react";
 import '../assets/css/Home.scss';
 import { Link } from "react-router-dom";
-
+import Filter from "./Filter";
 
 
 const Header: React.FC = () => {
@@ -18,9 +18,7 @@ const Header: React.FC = () => {
             <li>
               <Link to="/about">About</Link>
             </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
+    <Filter/>
           </ul>
         </nav>
       </div>

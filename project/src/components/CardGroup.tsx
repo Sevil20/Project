@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import { useAppSelector, useAppDispatch } from '../redux/store/hooks';
 import { Link } from 'react-router-dom';
 
+
 interface Recipe {
   id: number;
   title: string;
@@ -32,6 +33,7 @@ const CardGroup: React.FC = () => {
 
   return (
     <>
+   
     <div className="card-group">
       {loading ? (
         <div className='card-group-loader'>

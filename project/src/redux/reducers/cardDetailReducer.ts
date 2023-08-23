@@ -55,7 +55,7 @@ export const fetchCardDetailData = createAsyncThunk(
     try {
       const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information`, {
         params: {
-          apiKey: '5518ba70703d4fc883f3912db219b0f8',
+          apiKey: '9037f41848874897a83e6561525f5b20',
         },
       });
       return response.data;
