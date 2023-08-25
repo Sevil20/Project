@@ -8,6 +8,7 @@ const Filter: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
+  
   const handleButtonClick = (value: string) => {
     setSelectedCountry(value);
     dispatch(fetchSearchCard(value));
@@ -20,6 +21,8 @@ const Filter: React.FC = () => {
       <Menu.Item key="Turkish">Turkish</Menu.Item>
       <Menu.Item key="African">African</Menu.Item>
       <Menu.Item key="Italian">Italian</Menu.Item>
+      <Menu.Item key="Chinese">Chinese</Menu.Item>
+      <Menu.Item key="Korean">Korean</Menu.Item>
     </Menu>
   );
 

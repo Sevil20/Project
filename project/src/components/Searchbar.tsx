@@ -1,55 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../redux/store/store';
-import { fetchSearchCard } from '../redux/reducers/cardGroupReducer';
+import React, { useState } from "react";
+// import { useDispatch } from "react-redux";
+import {
+  fetchSearchCard,
+  setSearchQuery,
+} from "../redux/reducers/cardGroupReducer";
+import "../assets/css/Searchbar.scss";
+import { useAppDispatch, useAppSelector } from "../redux/store/hooks";
 
 const SearchBar: React.FC = () => {
-  const [localSearchQuery, setLocalSearchQuery] = useState<string | undefined>(undefined);
-  const dispatch = useDispatch<AppDispatch>();
-  let debounceTimeout: NodeJS.Timeout | null = null; // Track the debounce timeout
+  // const [localSearchQuery, setLocalSearchQuery] = useState("");
+  const dispatch = useAppDispatch();
+  const { searchQuery } = useAppSelector((state) => state.cardGroup);
 
-  const handleSearch = (value: string) => {
-    setLocalSearchQuery(value);
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    dispatch(setSearchQuery(value)); 
     dispatch(fetchSearchCard(value));
-
-    if (debounceTimeout) {
-        clearTimeout(debounceTimeout);
-      }
-  
-      // Set a new timeout to fetch data after 3 seconds
-      debounceTimeout = setTimeout(() => {
-        dispatch(fetchSearchCard(value));
-      }, 3000);
-  };
-
-  const optionFilter = (input: string, option: any) => {
-    const label = option?.label || '';
-    return typeof label === 'string' && label.toLowerCase().includes(input.toLowerCase());
-  };
-  
-
-  const optionSort = (optionA: any, optionB: any) => {
-    const labelA = optionA?.label || '';
-    const labelB = optionB?.label || '';
-    if (typeof labelA === 'string' && typeof labelB === 'string') {
-      return labelA.toLowerCase().localeCompare(labelB.toLowerCase());
-    }
-    return 0;
-  };
-  
+   };
 
   return (
-    <Select
-      showSearch
-      style={{ width: 200 }}
-      placeholder="Search Recipes"
-      optionFilterProp="children"
-      filterOption={optionFilter}
-      filterSort={optionSort}
-      onSearch={handleSearch}
-      value={localSearchQuery}
-    />
+    <input
+      type="search"
+      onChange={handleSearch || ""}
+      value={searchQuery}
+      className="search-input"
+    ></input>
   );
 };
 

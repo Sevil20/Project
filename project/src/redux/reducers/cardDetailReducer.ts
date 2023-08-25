@@ -31,12 +31,11 @@ interface RecipeDetail {
       original: string;
       unit: string;
     }[];
-    // ... other properties
   }
   
 
 interface CardDetailState {
-  data: RecipeDetail | null; // Change from array to single object
+  data: RecipeDetail | null; 
   loading: boolean;
   error: string | null;
 }
@@ -48,14 +47,13 @@ const initialState: CardDetailState = {
 };
 
 
-
 export const fetchCardDetailData = createAsyncThunk(
   'cardDetail/fetchData',
   async (id: number) => {
     try {
       const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information`, {
         params: {
-          apiKey: '9037f41848874897a83e6561525f5b20',
+          apiKey: 'f3c1681a631a4b529b4364683e3a3750',
         },
       });
       return response.data;
